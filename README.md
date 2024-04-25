@@ -1,4 +1,3 @@
-TaxiGo
 TaxiGo is a website that utilizes Global Positioning System (GPS) technology to locate the nearest taxis for the user based on their current location. Whether you're in a hurry to catch a ride or planning a trip, TaxiGo makes it easy to find available taxis in your vicinity.
 
 Features
