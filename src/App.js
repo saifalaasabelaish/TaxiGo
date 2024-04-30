@@ -5,7 +5,7 @@ import NavigationBar from './components/NavigationBar';
 import Masthead from './components/Masthead';
 import ServicesSection from './components/ServicesSection';
 import Footer from './components/Footer';
-
+import RegisterForm from './components/create';
 function App() {
   return (
     <div>
@@ -13,6 +13,7 @@ function App() {
       <NavigationBar />
       <Masthead />
       <ServicesSection />
+      <RegisterForm />
       <Footer />
     </div>
   );

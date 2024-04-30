@@ -2,7 +2,7 @@
   position: relative;
   background: transparent;
   z-index: 2;
-  overflow: hidden; /* Ensures no overflow of the blurred background */
+  overflow: hidden; 
 }
 
 .background-image {
