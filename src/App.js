@@ -5,7 +5,7 @@ import NavigationBar from './components/NavigationBar';
 import Masthead from './components/Masthead';
 import ServicesSection from './components/ServicesSection';
 import Footer from './components/Footer';
-
+import RatingDrive from './components/RatingDrive';
 function App() {
   return (
     <div>
@@ -14,6 +14,7 @@ function App() {
       <Masthead />
       <ServicesSection />
       <Footer />
+      <RatingDrive/>
     </div>
   );
 }
