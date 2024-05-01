@@ -1,0 +1,60 @@
+.form-container {
+    background-color: #ffbb00;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .taxi-fare-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label span {
+    margin-bottom: 5px;
+  }
+  
+  input,
+  textarea,
+  button {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  button {
+    background-color: black;
+    color: rgb(242, 245, 245);
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  
+  @media only screen and (min-width: 600px) {
+    .form-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+  
+    .taxi-fare-form {
+      gap: 20px;
+    }
+  
+    input,
+    textarea,
+    button {
+      width: auto;
+    }
+  }
+  
