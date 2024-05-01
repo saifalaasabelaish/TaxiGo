@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './create.css';
+import './CreateProfile.css';
 
 function Masthead() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Masthead.css';
-import backgroundImage from '../assets/home_pic.png'; // Adjust the path based on your project structure
+import backgroundImage from '../../../assets/home_pic.png'; 
 
 function Masthead() {
   return (

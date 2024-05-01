@@ -1,9 +1,8 @@
-// HomePage.js
 import React from 'react';
-import Masthead from '../Masthead';
-import ServicesSection from '../ServicesSection';
-import ServiceItem from '../ServiceItem';
-import Footer from '../Footer';
+import Masthead from './Masthead/Masthead';
+import ServicesSection from './ServicesHome/ServicesSection';
+import ServiceItem from './ServicesHome/ServiceItem';
+import Footer from '../common/Footer';
 
 function HomePage() {
   return (
@@ -12,9 +11,7 @@ function HomePage() {
       <ServicesSection>
         <ServiceItem title="Service 1" description="Description of service 1" />
         <ServiceItem title="Service 2" description="Description of service 2" />
-        {/* Add more ServiceItem components as needed */}
       </ServicesSection>
-      {/* You can add more sections/components as needed */}
       <Footer />
     </div>
   );
