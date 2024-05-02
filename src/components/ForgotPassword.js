@@ -1,4 +1,3 @@
-// ForgotPassword.js
 import React, { useState } from 'react';
 import '../components/ForgotPassword.css';
 

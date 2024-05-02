@@ -1,13 +1,12 @@
-
 .login-container {
  
     max-width: 400px;
-    margin: 100px auto; /* Center the login box horizontally and add top margin */
+    margin: 100px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fec534;
-    position: relative; /* Position relative for absolute centering */
+    position: relative; 
     
   }
   
