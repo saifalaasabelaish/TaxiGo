@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import TopBar from './components/TopBar';
-import NavigationBar from './components/NavigationBar';
-import Footer from './components/Footer';
-import Login from './components/Login';
-import ForgotPassword from './components/ForgotPassword';
-import Masthead from './components/Masthead';
-import ServicesSection from './components/ServicesSection';
+import TopBar from './components/common/TopBar';
+import NavigationBar from './components/common/NavigationBar';
+import ContactPage from './components/ContactUsPage/ContactPage'; // Make sure the path is correct
+import HomePage from './components/Home/HomePage';
+import ServicesPage from './components/ServicesPage/ServicesPage';
+import Order from "./components/TaxiRequest/TaxiRequest";
+import Login from "./components/Login/Login"
 
 function App() {
   return (
@@ -14,20 +14,17 @@ function App() {
       <div>
         <TopBar />
         <NavigationBar />
+
         <Routes>
-          <Route path="/" element={
-            <>
-              <Masthead />
-              <ServicesSection />
-            </>
-          } />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-        </Routes>
-        <Footer />
+        <Route path="/" Component={HomePage} />
+        <Route path="/order" Component={Order} />
+        <Route path="/services" Component={ServicesPage} />
+        <Route path="/login" Component={Login} />
+        <Route path="/contact" Component={ContactPage} /> </Routes>
+
+        
       </div>
     </Router>
   );
 }
-
 export default App;
