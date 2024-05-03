@@ -1,16 +1,24 @@
 import express from "express";
-import {PORT} from "./config.js"
+import mongoose from "mongoose";
+import { PORT } from "./config.js";
+import Admin from './models/Admin.js';
 
-const app=express();
+const app = express();
 
-app.get('/',(req,res)=>{
+app.use(express.json());
 
-    console.log(req)
-    return res.status(234).send('Welcome To TaxiGo')
+mongoose.connect("mongodb+srv://saifalaa099:aZ9FVwl38JHHi6jd@taxigo.fz7h5jg.mongodb.net/?retryWrites=true&w=majority&appName=taxigo", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log("Connected to DB"))
+.catch(error => console.error("Connection to DB failed:", error));
+
+app.get('/', (req, res) => {
+    console.log(req);
+    return res.status(234).send('Welcome To TaxiGo');
 });
 
-app.listen(PORT,()=>{
-
+app.listen(PORT, () => {
     console.log(`App is listening to port : ${PORT}`);
-
 });
