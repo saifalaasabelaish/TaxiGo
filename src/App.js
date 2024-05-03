@@ -5,7 +5,7 @@ import NavigationBar from './components/NavigationBar';
 import Masthead from './components/Masthead';
 import ServicesSection from './components/ServicesSection';
 import Footer from './components/Footer';
-import RegisterForm from './components/create';
+import RegisterForm from './components/CreateProfile';
 function App() {
   return (
     <div>

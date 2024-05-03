@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './create.css';
+import './CreateProfile.css';
 
 function Masthead() {
   return (
@@ -65,8 +65,7 @@ function RegisterForm() {
     </div>
   );
 }
-
 ReactDOM.render(<Masthead />, document.getElementById('root'));
 ReactDOM.render(<RegisterForm />, document.getElementById('root'));
 
-export default RegisterForm;
+export default RegisterForm;  
