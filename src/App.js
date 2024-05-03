@@ -30,6 +30,7 @@ function App() {
           <Route path="/login" Component={Login} />
           <Route path="/contact" Component={ContactPage} />
           <Route path="/adminpanel" element={<AdminPanel />}>
+            <Route path="" element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="deliveries" element={<Deliveries />} />
             <Route path="taxi-rides" element={<TaxiRides />} />
