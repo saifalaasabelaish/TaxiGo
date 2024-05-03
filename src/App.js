@@ -6,7 +6,9 @@ import ContactPage from './components/ContactUsPage/ContactPage'; // Make sure t
 import HomePage from './components/Home/HomePage';
 import ServicesPage from './components/ServicesPage/ServicesPage';
 import Order from "./components/TaxiRequest/TaxiRequest";
-import Login from "./components/Login/Login"
+import Login from "./components/Login/Login";
+import RegisterForm from "./components/CreateProfile/CreateProfile";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/order" Component={Order} />
         <Route path="/services" Component={ServicesPage} />
         <Route path="/login" Component={Login} />
+        <Route path="/create-profile" Component={RegisterForm} />
+        <Route path="/forgot-password" Component={ForgotPassword} />
         <Route path="/contact" Component={ContactPage} /> </Routes>
 
         

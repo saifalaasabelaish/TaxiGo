@@ -9,6 +9,13 @@
     position: relative; 
     
   }
+  .masthead {
+    height: 100vh;
+    align-items: center; 
+    justify-content: center; 
+    flex: 0 1 auto; 
+  }
+  
   
   .login-container h2 {
     margin-bottom: 20px;
@@ -18,10 +25,11 @@
     margin-bottom: 15px;
   }
   
-  label {
+  .label {
     display: block;
     margin-bottom: 5px;
   }
+  
   
   input[type="text"],
   input[type="password"] {
@@ -44,10 +52,10 @@
     cursor: pointer;
   }
 
-  .Create-button {
+  .RegisterForm {
     width: 100%;
     padding: 10px;
-    background-color: #1455ec;
+    background-color: #31383e;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -60,3 +68,28 @@
     margin-top: 10px;
   }
   
+  .background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px);
+    z-index: -1; 
+  }
+
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -2; 
+  }
+
+  
+
+ 

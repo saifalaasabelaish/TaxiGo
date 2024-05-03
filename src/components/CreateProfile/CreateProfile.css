@@ -35,7 +35,7 @@ input[type="tel"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: black;
+    background-color: #31383e;
     color: white;
     border: none;
     cursor: pointer;
