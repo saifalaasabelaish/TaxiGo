@@ -7,10 +7,15 @@ body {
 
 .register-form {
     background-color: #ffc107;
-    padding: 20px;
-    margin: auto;
     width: 725px;
     box-shadow: 0 0 10px rgba(157, 196, 19, 0.1);
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fec534;
+    position: relative;
 }
 
 h2 {
@@ -63,41 +68,9 @@ button:hover {
 
 }
 .masthead {
-    position: relative;
-    background: transparent;
-    z-index: 2;
-    overflow: hidden; 
-  }
-  
-  .background-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    filter: blur(4px);
-    z-index: -2; 
-  }
-  
-  .background-overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -1; 
-  }
-  
-  .masthead .display-3 {
-    font-size: 4.5rem;
-    line-height: 1.2;
-  }
-  
-  .masthead .lead {
-    font-size: 1.25rem;
-    font-weight: 300;
+    height: 100vh;
+    align-items: center; 
+    justify-content: center; 
+    flex: 0 1 auto; 
   }
   
