@@ -1,23 +1,28 @@
-import { useState } from 'react'
-import './adminpanel.css'
-import Header from './Header'
-import Sidebar from './Sidebar'
-import Home from './Home'
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import AdminPanelHeader from "./AdminPanelHeader";
+import AdminSidebar from "./AdminSidebar";
+import "./adminpanel.css";
 
 function AdminPanel() {
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
 
   const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
 
   return (
-    <div className='grid-container'>
-      <Header OpenSidebar={OpenSidebar}/>
-      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
-      <Home />
+    <div className="grid-container">
+      <AdminPanelHeader OpenSidebar={OpenSidebar} />
+      <AdminSidebar
+        openSidebarToggle={openSidebarToggle}
+        openSidebar={OpenSidebar}
+      />
+      <div className="outlet-container">
+        <Outlet />
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default AdminPanel;
