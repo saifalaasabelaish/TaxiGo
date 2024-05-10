@@ -1,30 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './CreateProfile.css';
+import backgroundImage from '../../assets/home_pic.png';
 
-function Masthead() {
-  return (
-    <div className="masthead position-relative">
-      <div className="background-image"
-        style={{
-          backgroundImage: "url('path/to/your/background-image.jpg')"
-        }}>
-      </div>
-      <div className="background-overlay"></div>
-      <div className="container h-100">
-        <div className="row h-100 align-items-center justify-content-center text-center">
-          <div className="col-lg-10 align-self-end">
-            <h1 className="display-3 text-white">Your Title Here</h1>
-            <hr className="divider my-4" />
-          </div>
-          <div className="col-lg-8 align-self-baseline">
-            <p className="lead text-white-75 mb-5">Your subtitle here</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+
 
 function RegisterForm() {
   const handleSubmit = (event) => {
@@ -37,10 +16,11 @@ function RegisterForm() {
     const photo = document.getElementById('photo').files[0];
 
     console.log('Registered with:', { name, email, password, phone, photoName: photo ? photo.name : 'No file selected' });
-    alert(`   !\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nPhoto: ${photo ? photo.name : 'No file selected'}`);
+    alert(`\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nPhoto: ${photo ? photo.name : 'No file selected'}`);
   }
 
   return (
+    <header className="masthead">
     <div>
       <div className="headerForPh"></div>
       <div className="register-form">
@@ -63,10 +43,13 @@ function RegisterForm() {
         </form>
       </div>
     </div>
+    <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+
+
+    </header>
   );
 }
 
-ReactDOM.render(<Masthead />, document.getElementById('root'));
-ReactDOM.render(<RegisterForm />, document.getElementById('root'));
+
 
 export default RegisterForm;
