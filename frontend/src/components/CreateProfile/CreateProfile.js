@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './CreateProfile.css';
 
@@ -27,7 +26,7 @@ function Masthead() {
 }
 
 function RegisterForm() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const name = document.getElementById('name').value;
@@ -36,16 +35,42 @@ function RegisterForm() {
     const phone = document.getElementById('phone').value;
     const photo = document.getElementById('photo').files[0];
 
-    console.log('Registered with:', { name, email, password, phone, photoName: photo ? photo.name : 'No file selected' });
-    alert(`   !\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nPhoto: ${photo ? photo.name : 'No file selected'}`);
-  }
+    
+    if (!validatePassword(password)) {
+      alert('Password must contain at least 5 letters and 4 digits.');
+      return; 
+    }
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phone', phone);
+    formData.append('photo', photo);
+
+    const response = await fetch('/register', {
+      method: 'POST',
+      body: formData 
+    });
+
+    if (response.ok) {
+      alert('Registration successful!');
+    } else {
+      alert('Failed to register.');
+    }
+  };
+
+  const validatePassword = (password) => {
+    const hasEnoughLetters = (password.match(/[a-zA-Z]/g) || []).length >= 5;
+    const hasEnoughDigits = (password.match(/\d/g) || []).length >= 4;
+    return hasEnoughLetters && hasEnoughDigits;
+  };
 
   return (
     <div>
       <div className="headerForPh"></div>
       <div className="register-form">
         <h2>Create Profile</h2>
-
         <form id="register" onSubmit={handleSubmit}>
           <label htmlFor="name">Name:</label>
           <input type="text" id="name" name="name" required />
@@ -66,7 +91,12 @@ function RegisterForm() {
   );
 }
 
-ReactDOM.render(<Masthead />, document.getElementById('root'));
-ReactDOM.render(<RegisterForm />, document.getElementById('root'));
+ReactDOM.render(
+  <>
+    <Masthead />
+    <RegisterForm />
+  </>,
+  document.getElementById('root')
+);
 
 export default RegisterForm;
