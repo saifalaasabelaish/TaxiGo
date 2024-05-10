@@ -3,7 +3,6 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Route to add a new user
 router.post('/user', async (req, res) => {
   try {
     const { firstName, lastName, email, password, mobileNumber, dateOfBirth, gender, location } = req.body;
@@ -15,7 +14,6 @@ router.post('/user', async (req, res) => {
   }
 });
 
-// Route to get all users
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
@@ -25,7 +23,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route to delete a user by ID
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -36,7 +33,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Route to update a user by ID
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;

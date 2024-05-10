@@ -3,7 +3,6 @@ import Driver from '../models/Driver.js';
 
 const router = express.Router();
 
-// Route to add a new driver
 router.post('/', async (req, res) => {
   try {
     const {
@@ -41,7 +40,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Route to get all drivers
 router.get('/', async (req, res) => {
   try {
     const drivers = await Driver.find();
@@ -54,7 +52,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route to delete a driver by ID
 router.delete('/:id', async (req, res) => {
   try {
     const {
@@ -72,7 +69,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Route to update a driver by ID
 router.put('/:id', async (req, res) => {
   try {
     const {

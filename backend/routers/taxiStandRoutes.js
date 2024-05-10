@@ -3,7 +3,6 @@ import TaxiStand from '../models/TaxiStand.js';
 
 const router = express.Router();
 
-// Route to add a new taxi stand
 router.post('/', async (req, res) => {
   try {
     const { Name, email, password, mobileNumber } = req.body;
@@ -15,7 +14,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Route to get all taxi stands
 router.get('/', async (req, res) => {
   try {
     const taxiStands = await TaxiStand.find();
@@ -25,7 +23,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route to delete a taxi stand by ID
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -36,7 +33,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Route to update a taxi stand by ID
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;

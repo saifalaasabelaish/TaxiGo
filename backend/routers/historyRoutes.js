@@ -3,7 +3,6 @@ import History from '../models/History.js';
 
 const router = express.Router();
 
-// Route to get all history entries
 router.get('/', async (req, res) => {
   try {
     const history = await History.find().populate('driver user');
@@ -13,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route to get history entries for a specific driver
 router.get('/driver/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -24,7 +22,6 @@ router.get('/driver/:id', async (req, res) => {
   }
 });
 
-// Route to get history entries for a specific user
 router.get('/user/:id', async (req, res) => {
   try {
     const { id } = req.params;
