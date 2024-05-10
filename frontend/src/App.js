@@ -8,7 +8,7 @@ import HomePage from './components/Home/HomePage';
 import ServicesPage from './components/ServicesPage/ServicesPage';
 import Order from "./components/TaxiRequest/TaxiRequest";
 import Login from "./components/Login/Login"
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
@@ -29,13 +29,13 @@ function App() {
         <NavigationBar />
 
         <Routes>
-        <Route path="/" Component={HomePage} />
-        <Route path="/order" Component={Order} />
-        <Route path="/services" Component={ServicesPage} />
-        <Route path="/login" Component={Login} />
-        <Route path="/contact" Component={ContactPage} /> </Routes>
+          <Route path="/" Component={HomePage} />
+          <Route path="/order" Component={Order} />
+          <Route path="/services" Component={ServicesPage} />
+          <Route path="/login" Component={Login} />
+          <Route path="/contact" Component={ContactPage} /> </Routes>
 
-        
+
       </div>
     </Router>
   );
