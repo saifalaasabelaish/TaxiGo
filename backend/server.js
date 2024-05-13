@@ -6,11 +6,12 @@ import driverRoutes from "./routers/driverRoutes.js";
 import historyRoutes from "./routers/historyRoutes.js";
 import taxiStandRoutes from "./routers/taxiStandRoutes.js";
 import userRoutes from "./routers/userRoutes.js";
-
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect('mongodb+srv://saifalaa099:aZ9FVwl38JHHi6jd@taxigo.fz7h5jg.mongodb.net/?retryWrites=true&w=majority&appName=taxigo', {
   useNewUrlParser: true,

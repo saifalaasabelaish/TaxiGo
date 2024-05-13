@@ -1,4 +1,5 @@
-import React from 'react';
+import React  from 'react';
+import {useEffect , useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopBar from './components/common/TopBar';
 import NavigationBar from './components/common/NavigationBar';
@@ -10,7 +11,18 @@ import Login from "./components/Login/Login";
 import RegisterForm from "./components/CreateProfile/CreateProfile";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 
+
+
 function App() {
+  
+  const [data, setData] = useState([]);
+
+useEffect (() => {
+  fetch('http://localhost:5001/backend/data')
+    .then((response) => response.json())
+    .then((data) => setData(data))
+    .catch((error) => console.error('Error fetching data:', error));
+}, []);
   return (
     <Router>
       <div>

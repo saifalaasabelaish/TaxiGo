@@ -3,7 +3,7 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-router.post('/user', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { firstName, lastName, email, password, mobileNumber, dateOfBirth, gender, location } = req.body;
     const newUser = new User({ firstName, lastName, email, password, mobileNumber, dateOfBirth, gender, location });
