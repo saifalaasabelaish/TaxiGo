@@ -22,12 +22,12 @@ const UserSchema = new mongoose.Schema({
       message: props => `${props.value} is not a valid phone number!`
     }
   },
-  createdAt: { type: Date, default: Date.now, immutable: true }, // make createdAt immutable
+  createdAt: { type: Date, default: Date.now, immutable: true }, 
   dateOfBirth: { type: Date, required: true },
   gender: { 
     type: String, 
     required: true,
-    enum: ['Male', 'Female', 'Other'], // Enforce gender to be one of the specified values
+    enum: ['Male', 'Female', 'Other'], 
   },
   history: [{ type: mongoose.Schema.Types.ObjectId, ref: 'History' }],
   location: { type: String, trim: true }
