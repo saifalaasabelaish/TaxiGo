@@ -8,7 +8,6 @@ const app = express();
 
 app.use(express.json());
 
-// Connection to MongoDB
 mongoose.connect("mongodb+srv://saifalaa099:aZ9FVwl38JHHi6jd@taxigo.fz7h5jg.mongodb.net/?retryWrites=true&w=majority&appName=taxigo", {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -26,7 +25,6 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
     const { name, email, password, phone, photo } = req.body;
     
-    // Hash  pass
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -40,14 +38,13 @@ app.post('/register', async (req, res) => {
     });
 
     try {
-        await user.save();  // Save user to db
+        await user.save(); 
         res.status(201).send('User registered successfully');
     } catch (error) {
         res.status(500).send('Error registering user : ' + error.message);
     }
 });
 
-// Start the server
 app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}`);
 });
