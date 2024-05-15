@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> lara
 import React, { useState } from 'react';
 import backgroundImage from '../../assets/home_pic.png';
 import './CreateProfile.css';
@@ -29,7 +25,6 @@ function RegisterForm() {
         },
         body: JSON.stringify(formData),
       });
-<<<<<<< HEAD
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -40,42 +35,6 @@ function RegisterForm() {
       console.log('Registered with:', data);
       alert(JSON.stringify(data, null, 2));
 
-      // Reset form after successful submission
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        mobileNumber: '',
-        dateOfBirth: '',
-        gender: '',
-        location: ''
-      });
-    } catch (error) {
-      console.error('Error registering user:', error.message);
-      alert(`Failed to register user. Error: ${error.message}`);
-    }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-=======
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to register user');
-      }
-
-      const data = await response.json();
-      console.log('Registered with:', data);
-      alert(JSON.stringify(data, null, 2));
-
-      // Reset form after successful submission
       setFormData({
         firstName: '',
         lastName: '',
@@ -100,7 +59,6 @@ function RegisterForm() {
     }));
   };
 
->>>>>>> lara
 
   return (
     <header className="masthead">
@@ -123,13 +81,9 @@ function RegisterForm() {
             <label htmlFor="dateOfBirth">Date of Birth:</label>
             <input type="date" id="dateOfBirth" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
             <label htmlFor="gender">Gender:</label>
-<<<<<<< HEAD
-            <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required>
-=======
             <select id="gender" name="gender" value={formData.gender}
 
               onChange={handleChange} required>
->>>>>>> lara
               <option value="">Select Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -145,8 +99,4 @@ function RegisterForm() {
   );
 }
 
-<<<<<<< HEAD
 export default RegisterForm;
-=======
-export default RegisterForm;
->>>>>>> lara
