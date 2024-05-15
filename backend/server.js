@@ -1,12 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import { PORT } from './config.js';
 import adminRoutes from "./routers/adminRoutes.js";
 import driverRoutes from "./routers/driverRoutes.js";
 import historyRoutes from "./routers/historyRoutes.js";
 import taxiStandRoutes from "./routers/taxiStandRoutes.js";
 import userRoutes from "./routers/userRoutes.js";
-import cors from 'cors';
 
 const app = express();
 
@@ -26,12 +26,11 @@ app.use('/History', historyRoutes);
 app.use('/TaxiStand', taxiStandRoutes);
 app.use('/User', userRoutes);
 
-
 app.get('/', (req, res) => {
   console.log(req);
-  return res.status(234).send('Welcome To TaxiGo');
+  return res.status(200).send('Welcome To TaxiGo');
 });
 
 app.listen(PORT, () => {
-  console.log(`App is listening to port : ${PORT}`);
+  console.log(`App is listening on port: ${PORT}`);
 });
