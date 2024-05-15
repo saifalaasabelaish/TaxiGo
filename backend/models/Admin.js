@@ -9,7 +9,7 @@ const AdminSchema = new mongoose.Schema({
 });
 
 // Pre-save hook to hash the password
-AdminSchema.pre('save', function(next) {
+AdminSchema.pre('save', function (next) {
   // Only hash the password if it has been modified (or is new)
   if (!this.isModified('password')) return next();
 

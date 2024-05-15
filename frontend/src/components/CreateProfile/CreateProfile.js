@@ -1,102 +1,104 @@
-import ReactDOM from 'react-dom';
+
+import React, { useState } from 'react';
+import backgroundImage from '../../assets/home_pic.png';
 import './CreateProfile.css';
 
-function Masthead() {
-  return (
-    <div className="masthead position-relative">
-      <div className="background-image"
-        style={{
-          backgroundImage: "url('path/to/your/background-image.jpg')"
-        }}>
-      </div>
-      <div className="background-overlay"></div>
-      <div className="container h-100">
-        <div className="row h-100 align-items-center justify-content-center text-center">
-          <div className="col-lg-10 align-self-end">
-            <h1 className="display-3 text-white">Your Title Here</h1>
-            <hr className="divider my-4" />
-          </div>
-          <div className="col-lg-8 align-self-baseline">
-            <p className="lead text-white-75 mb-5">Your subtitle here</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function RegisterForm() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    mobileNumber: '',
+    dateOfBirth: '',
+    gender: '',
+    location: ''
+  });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const phone = document.getElementById('phone').value;
-    const photo = document.getElementById('photo').files[0];
+    try {
+      const response = await fetch('http://localhost:5001/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    
-    if (!validatePassword(password)) {
-      alert('Password must contain at least 5 letters and 4 digits.');
-      return; 
-    }
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to register user');
+      }
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('phone', phone);
-    formData.append('photo', photo);
+      const data = await response.json();
+      console.log('Registered with:', data);
+      alert(JSON.stringify(data, null, 2));
 
-    const response = await fetch('/register', {
-      method: 'POST',
-      body: formData 
-    });
-
-    if (response.ok) {
-      alert('Registration successful!');
-    } else {
-      alert('Failed to register.');
+      // Reset form after successful submission
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        mobileNumber: '',
+        dateOfBirth: '',
+        gender: '',
+        location: ''
+      });
+    } catch (error) {
+      console.error('Error registering user:', error.message);
+      alert(`Failed to register user. Error: ${error.message}`);
     }
   };
 
-  const validatePassword = (password) => {
-    const hasEnoughLetters = (password.match(/[a-zA-Z]/g) || []).length >= 5;
-    const hasEnoughDigits = (password.match(/\d/g) || []).length >= 4;
-    return hasEnoughLetters && hasEnoughDigits;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
+
 
   return (
-    <div>
-      <div className="headerForPh"></div>
-      <div className="register-form">
-        <h2>Create Profile</h2>
-        <form id="register" onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" required />
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-          <label htmlFor="address">Address:</label>
-          <input type="text" id="address" name="address" required />
-          <label htmlFor="phone">Phone:</label>
-          <input type="tel" id="phone" name="phone" required />
-          <label htmlFor="photo">Photo:</label>
-          <input type="file" id="photo" name="photo" accept="image/*" /><br />
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" required />
-          <button type="submit">Submit</button>
-        </form>
+    <header className="masthead">
+      <div>
+        <div className="headerForPh"></div>
+        <div className="register-form">
+          <h2>Create Profile</h2>
+
+          <form id="register" onSubmit={handleSubmit}>
+            <label htmlFor="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+            <label htmlFor="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+            <label htmlFor="password">Password:</label>
+            <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
+            <label htmlFor="mobileNumber">Mobile Number:</label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" value={formData.mobileNumber} onChange={handleChange} required />
+            <label htmlFor="dateOfBirth">Date of Birth:</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
+            <label htmlFor="gender">Gender:</label>
+            <select id="gender" name="gender" value={formData.gender}
+
+              onChange={handleChange} required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <label htmlFor="location">Location:</label>
+            <input type="text" id="location" name="location" value={formData.location} onChange={handleChange} />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
-    </div>
+      <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+    </header>
   );
 }
-
-ReactDOM.render(
-  <>
-    <Masthead />
-    <RegisterForm />
-  </>,
-  document.getElementById('root')
-);
 
 export default RegisterForm;
