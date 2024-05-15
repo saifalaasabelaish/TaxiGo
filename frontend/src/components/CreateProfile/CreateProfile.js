@@ -27,7 +27,8 @@ function RegisterForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to register user');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to register user');
       }
 
       const data = await response.json();
@@ -46,8 +47,8 @@ function RegisterForm() {
         location: ''
       });
     } catch (error) {
-      console.error('Error registering user:', error);
-      alert('Failed to register user. Please try again.');
+      console.error('Error registering user:', error.message);
+      alert(`Failed to register user. Error: ${error.message}`);
     }
   };
 
@@ -82,8 +83,8 @@ function RegisterForm() {
             <label htmlFor="gender">Gender:</label>
             <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required>
               <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
             <label htmlFor="location">Location:</label>
             <input type="text" id="location" name="location" value={formData.location} onChange={handleChange} />
