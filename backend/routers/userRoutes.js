@@ -6,12 +6,10 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   try {
     const { firstName, lastName, email, password, mobileNumber, dateOfBirth, gender, location } = req.body;
-    console.log('Received data:', req.body);  // Logging received data
     const newUser = new User({ firstName, lastName, email, password, mobileNumber, dateOfBirth, gender, location });
     await newUser.save();
     res.status(201).json({ message: 'User created successfully', user: newUser });
   } catch (error) {
-    console.error('Error creating user:', error.message);  // Logging the error
     res.status(400).json({ message: 'Failed to create user', error: error.message });
   }
 });
