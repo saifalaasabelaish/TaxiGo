@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+
+const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new mongoose.Schema({
   firstName: { type: String, required: true, trim: true },
@@ -17,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function(v) {
-        return /\d{10}/.test(v);
+        return /\d{10}/.test(v); 
       },
       message: props => `${props.value} is not a valid phone number!`
     }
@@ -32,6 +35,23 @@ const UserSchema = new mongoose.Schema({
   history: [{ type: mongoose.Schema.Types.ObjectId, ref: 'History' }],
   location: { type: String, trim: true }
 });
+
+// Pre-save hook to hash the password
+UserSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+  
+  try {
+    const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+UserSchema.methods.comparePassword = async function(candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
+};
 
 const User = mongoose.model('User', UserSchema);
 
