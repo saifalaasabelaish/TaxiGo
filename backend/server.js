@@ -2,11 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { PORT } from './config.js';
-import adminRoutes from './routers/adminRoutes.js';
-import driverRoutes from './routers/driverRoutes.js';
-import historyRoutes from './routers/historyRoutes.js';
-import taxiStandRoutes from './routers/taxiStandRoutes.js';
-import userRoutes from './routers/userRoutes.js';
+import adminRoutes from "./routers/adminRoutes.js";
+import driverRoutes from "./routers/driverRoutes.js";
+import historyRoutes from "./routers/historyRoutes.js";
+import taxiStandRoutes from "./routers/taxiStandRoutes.js";
+import userRoutes from "./routers/userRoutes.js";
+import authRoutes from "./routers/authRouters.js";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/Driver', driverRoutes);
 app.use('/History', historyRoutes);
 app.use('/TaxiStand', taxiStandRoutes);
 app.use('/User', userRoutes);
+app.use('/Auth', authRoutes);
 
 app.get('/', (req, res) => {
   console.log(req);

@@ -55,20 +55,12 @@ const Login = () => {
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Email:</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <label>Username:</label>
+              <input name="email" type="email" value={username} onChange={(e) => setUsername(e.target.value)} />
             </div>
             <div className="form-group">
               <label>Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button type="submit" className="submit-button">
               Login
