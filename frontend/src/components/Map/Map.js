@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import placeholder from '../../assets/placeholder.png';
-import "./Map.css"; // Ensure this path is correct
+import "./Map.css"; 
+import placeholder from '../../assets/placeholder.png'; 
 
 const customIcon = new L.Icon({
   iconUrl: placeholder,

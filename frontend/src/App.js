@@ -1,5 +1,4 @@
-import React  from 'react';
-import {useEffect , useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopBar from './components/common/TopBar';
 import NavigationBar from './components/common/NavigationBar';
@@ -11,40 +10,36 @@ import Login from "./components/Login/Login";
 import RegisterForm from "./components/CreateProfile/CreateProfile";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Map from "./components/Map/Map";
-import MapWithCO from "./components/MapWithCO/MapWithCO";
-
-
+import MapWithCo from "./components/MapWithCo/MapWithCo"
 function App() {
-  
   const [data, setData] = useState([]);
 
-useEffect (() => {
-  fetch('http://localhost:5001/backend/data')
-    .then((response) => response.json())
-    .then((data) => setData(data))
-    .catch((error) => console.error('Error fetching data:', error));
-}, []);
+  useEffect(() => {
+    fetch('http://localhost:5001/backend/data')
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+
   return (
     <Router>
       <div>
         <TopBar />
         <NavigationBar />
-
         <Routes>
-        <Route path="/" Component={HomePage} />
-        <Route path="/order" Component={Order} />
-        <Route path="/services" Component={ServicesPage} />
-        <Route path="/login" Component={Login} />
-        <Route path="/create-profile" Component={RegisterForm} />
-        <Route path="/forgot-password" Component={ForgotPassword} />
-        <Route path="/contact" Component={ContactPage} /> 
-        <Route path="/map" Component={Map} />
-        <Route path="/mapwithco" Component={MapWithCo}/>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/create-profile" element={<RegisterForm />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/contact" element={<ContactPage />} /> 
+          <Route path="/map" element={<Map />} />
+          <Route path="/mapwithco" element={<MapWithCo />} />
         </Routes>
-
-
       </div>
     </Router>
   );
 }
+
 export default App;
