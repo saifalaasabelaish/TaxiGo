@@ -25,6 +25,12 @@ function NavigationBar() {
           <li className="nav-item">
             <Link className="nav-link" to="/contact">Contact Us</Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/mapwithco">Taxi Map</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/map">Map</Link>
+          </li>
         </ul>
       </div>
     </nav>

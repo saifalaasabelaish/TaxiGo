@@ -10,7 +10,8 @@ import Order from "./components/TaxiRequest/TaxiRequest";
 import Login from "./components/Login/Login";
 import RegisterForm from "./components/CreateProfile/CreateProfile";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
-
+import Map from "./components/Map/Map";
+import MapWithCO from "./components/MapWithCO/MapWithCO";
 
 
 function App() {
@@ -36,7 +37,10 @@ useEffect (() => {
         <Route path="/login" Component={Login} />
         <Route path="/create-profile" Component={RegisterForm} />
         <Route path="/forgot-password" Component={ForgotPassword} />
-        <Route path="/contact" Component={ContactPage} /> </Routes>
+        <Route path="/contact" Component={ContactPage} /> 
+        <Route path="/map" Component={Map} />
+        <Route path="/mapwithco" Component={MapWithCo}/>
+        </Routes>
 
 
       </div>
