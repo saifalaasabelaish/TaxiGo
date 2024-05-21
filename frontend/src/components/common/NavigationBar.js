@@ -14,9 +14,6 @@ function NavigationBar() {
             <Link className="nav-link" to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/order">Order</Link>
-          </li>
-          <li className="nav-item">
             <Link className="nav-link" to="/services">Services</Link>
           </li>
           <li className="nav-item">
@@ -32,5 +29,3 @@ function NavigationBar() {
 }
 
 export default NavigationBar;
-
-
