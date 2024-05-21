@@ -23,6 +23,33 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/email', async (req, res) => {
+  try {
+    const admin = await Admin.findOne(); // Adjust the query as needed to fetch the correct user
+    if (admin) {
+      res.json({ email: admin.email });
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch user email', error: error.message });
+  }
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const admin = await Admin.findOne({ email });
+    if (admin && admin.password === password) { // Note: Use hashing for passwords in real applications
+      res.json({ success: true, message: 'Login successful' });
+    } else {
+      res.json({ success: false, message: 'Invalid email or password' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to login', error: error.message });
+  }
+});
+
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;

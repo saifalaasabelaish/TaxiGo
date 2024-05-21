@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../ForgotPassword/ForgotPassword.css';
+import backgroundImage from '../../assets/home_pic.png';
+
 
 const ForgotPassword = ({ handleResetPassword }) => {
   const [email, setEmail] = useState('');
@@ -22,6 +24,7 @@ const ForgotPassword = ({ handleResetPassword }) => {
   else {setError(null);}
   };
   return (
+    <header className="masthead">
     <div className='Forgot-Container'>
       <h2>Forgot Password</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -34,6 +37,9 @@ const ForgotPassword = ({ handleResetPassword }) => {
         <button type="submit">Reset Password</button>
       </form>
     </div>
+    <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+
+    </header>
   );
 };
 

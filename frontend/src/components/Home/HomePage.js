@@ -1,12 +1,17 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Masthead from './Masthead/Masthead';
 import ServicesSection from './ServicesHome/ServicesSection';
 import ServiceItem from './ServicesHome/ServiceItem';
 import Footer from '../common/Footer';
 
 function HomePage() {
+  const location = useLocation();
+  const { email } = location.state || {};
+
   return (
     <div>
+      <h5>{email}</h5> 
       <Masthead />
       <ServicesSection>
         <ServiceItem title="Service 1" description="Description of service 1" />

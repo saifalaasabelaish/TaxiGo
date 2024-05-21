@@ -1,39 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import backgroundImage from '../../assets/home_pic.png';
 
-
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+  
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!username || !password) {
-      setError('Please enter both username and password');
+    if (!email || !password) {
+      setError('Please enter both email and password');
       return;
+    } else {
+      setError(null);
     }
-    else { setError(null); }
+
+    try {
+      const response = await axios.post('http://localhost:5001/user/login', { email, password });
+      if (response.data.success) {
+        console.log('Login successful');
+        navigate('/order', { state: { email } });
+      } else {
+        setError('Invalid email or password');
+      }
+      const responsE = await axios.post('http://localhost:5001/admin/login', { email, password });
+      if (responsE.data.success) {
+        console.log('Login successful');
+        navigate('/', { state: { email } });
+      } else {
+        setError('Invalid email or password');
+      }
+
+    } catch (error) {
+      console.error('Error logging in:', error);
+      setError('An error occurred during login');
+    }
   };
 
   return (
     <header className="masthead">
-    <div className="login-container">
-        <div className='Log'>
+      <div className="Connection_Status">
+      <h5>{email}</h5>
+      </div>
+      <div className="login-container">
+        <div className="Log">
           <h2>Login</h2>
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Username:</label>
-              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+              <label>Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="form-group">
               <label>Password:</label>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <button type="submit" className="submit-button">Login</button>
+            <button type="submit" className="submit-button">
+              Login
+            </button>
           </form>
           <p>
             <Link to="/forgot-password">Forgot Password?</Link>
@@ -44,11 +81,12 @@ const Login = () => {
               <button className="RegisterForm">Create Profile</button>
             </Link>
           </p>
-          <div />
-        </div> 
+        </div>
       </div>
-      <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-
+      <div
+        className="background-image"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
     </header>
   );
 };
