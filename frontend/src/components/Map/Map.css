@@ -1,26 +1,24 @@
-* {
+/* Map.css */
+/* Reset box-sizing, margin, and padding for all elements within the map container */
+.map-container * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-#root {
+/* Map container styling */
+.map-container {
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1em;
-  font-family: sans-serif;
-  color: #333;
-  background-color: #f3e4d7;
+  width: 100vw;
 }
 
+/* Leaflet map container styling */
 .leaflet-container {
   height: 100vh;
   width: 100vw;
 }
 
+/* Cluster icon styling */
 .cluster-icon {
   background-color: #333;
   height: 2em;
@@ -29,7 +27,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
   font-size: 1.2rem;
   box-shadow: 0 0 0px 5px #fff;
 }
