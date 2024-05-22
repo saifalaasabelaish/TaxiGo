@@ -3,7 +3,6 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Create a new user
 router.post('/', async (req, res) => {
   try {
     const { firstName, lastName, email, password, mobileNumber, dateOfBirth, gender, location } = req.body;
@@ -15,7 +14,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all users
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
@@ -25,10 +23,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get user email
 router.get('/email', async (req, res) => {
   try {
-    const user = await User.findOne(); // Adjust the query as needed to fetch the correct user
+    const user = await User.findOne();
     if (user) {
       res.json({ email: user.email });
     } else {
@@ -39,14 +36,13 @@ router.get('/email', async (req, res) => {
   }
 });
 
-// Login user
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (user && user.password === password) { // Note: Use hashing for passwords in real applications
+    if (user && user.password === password) 
       res.json({ success: true, message: 'Login successful' });
-    } else {
+    else {
       res.json({ success: false, message: 'Invalid email or password' });
     }
   } catch (error) {
@@ -54,7 +50,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Delete a user by ID
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -65,7 +60,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Update a user by ID
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;

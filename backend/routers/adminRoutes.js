@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 
 router.get('/email', async (req, res) => {
   try {
-    const admin = await Admin.findOne(); // Adjust the query as needed to fetch the correct user
+    const admin = await Admin.findOne(); 
     if (admin) {
       res.json({ email: admin.email });
     } else {
@@ -40,9 +40,9 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const admin = await Admin.findOne({ email });
-    if (admin && admin.password === password) { // Note: Use hashing for passwords in real applications
+    if (admin && admin.password === password) 
       res.json({ success: true, message: 'Login successful' });
-    } else {
+     else {
       res.json({ success: false, message: 'Invalid email or password' });
     }
   } catch (error) {

@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  
+  let acces=0;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,14 +24,17 @@ const Login = () => {
       const response = await axios.post('http://localhost:5001/user/login', { email, password });
       if (response.data.success) {
         console.log('Login successful');
-        navigate('/order', { state: { email } });
+        acces=1;
+        navigate('/', { state: { acces } });
+        
       } else {
         setError('Invalid email or password');
       }
       const responsE = await axios.post('http://localhost:5001/admin/login', { email, password });
       if (responsE.data.success) {
         console.log('Login successful');
-        navigate('/', { state: { email } });
+        acces=2;  
+      navigate('/order', { state: { acces } });
       } else {
         setError('Invalid email or password');
       }
@@ -45,7 +48,6 @@ const Login = () => {
   return (
     <header className="masthead">
       <div className="Connection_Status">
-      <h5>{email}</h5>
       </div>
       <div className="login-container">
         <div className="Log">
