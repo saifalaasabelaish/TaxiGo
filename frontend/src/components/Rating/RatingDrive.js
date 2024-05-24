@@ -17,7 +17,7 @@ const RatingDrive = () => {
 
   const submitReview = (event) => {
     event.preventDefault();
-    alert(`Review submitted: ${review} with a rating of ${rating} stars.`);
+    alert(` your Review submitted: ${review} with a rating of ${rating} stars.THANK YOU`);
   };
 
   return (
