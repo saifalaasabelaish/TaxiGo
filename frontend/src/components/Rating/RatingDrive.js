@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './RatingDrive.css'; 
 import Rating from 'react-rating-stars-component'; 
 
 const RatingDrive = () => {
@@ -17,12 +16,12 @@ const RatingDrive = () => {
 
   const submitReview = (event) => {
     event.preventDefault();
-    alert(`Review submitted: ${review} with a rating of ${rating} stars.`);
+    alert(`Your Review submitted: ${review} with a rating of ${rating} stars. THANK YOU`);
   };
 
   return (
-    <div className="container h-100">
-      <div className="row h-100 justify-content-center align-items-center">
+    <div className="container mt-5">
+      <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card text-center">
             <div className="card-header">
@@ -31,16 +30,16 @@ const RatingDrive = () => {
             <div className="card-body">
               <h5 className="card-title">How was your trip with our website?</h5>
               <p className="card-text">Your feedback is important to us and helps improve our service.</p>
-              <div className ="starRating">
-              <Rating
-                count={5}
-                onChange={ratingChanged}
-                size={50}
-                activeColor="#ffd700"
-                value={rating}
-                isHalf={true}
-              />
-</div>
+              <div className="d-flex justify-content-center my-3">
+                <Rating
+                  count={5}
+                  onChange={ratingChanged}
+                  size={50}
+                  activeColor="#ffc107"
+                  value={rating}
+                  isHalf={true}
+                />
+              </div>
               <form onSubmit={submitReview}>
                 <textarea 
                   className="form-control" 
