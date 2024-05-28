@@ -7,10 +7,7 @@ import driverRoutes from './routers/driverRoutes.js';
 import historyRoutes from './routers/historyRoutes.js';
 import taxiStandRoutes from './routers/taxiStandRoutes.js';
 import userRoutes from './routers/userRoutes.js';
-<<<<<<< HEAD
-=======
 import ContactRoutes from './routers/ContactRoutes.js';
->>>>>>> lara
 
 const app = express();
 
