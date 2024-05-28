@@ -23,6 +23,33 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/email', async (req, res) => {
+  try {
+    const user = await User.findOne();
+    if (user) {
+      res.json({ email: user.email });
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch user email', error: error.message });
+  }
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (user && user.password === password) 
+      res.json({ success: true, message: 'Login successful' });
+    else {
+      res.json({ success: false, message: 'Invalid email or password' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to login', error: error.message });
+  }
+});
+
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;

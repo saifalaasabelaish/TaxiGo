@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import "./Map.css"; 
-import placeholder from '../../assets/placeholder.png'; 
+import placeholder from '../../assets/placeholder.png';
+import "./Map.css"; // Ensure this path is correct
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const customIcon = new L.Icon({
   iconUrl: placeholder,
@@ -38,13 +39,15 @@ function LocationMarker() {
 
 const Map = () => {
   return (
-    <MapContainer center={[32.22115149325139, 35.26074000763494]} zoom={13} scrollWheelZoom={false} className="leaflet-container">
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <LocationMarker />
-    </MapContainer>
+    <div className="container-fluid p-0 map-container">
+      <MapContainer center={[32.22115149325139, 35.26074000763494]} zoom={13} scrollWheelZoom={false} className="leaflet-container">
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <LocationMarker />
+      </MapContainer>
+    </div>
   );
 }
 

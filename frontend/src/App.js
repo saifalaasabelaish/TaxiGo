@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopBar from './components/common/TopBar';
-import NavigationBar from './components/common/NavigationBar';
+import AppNavbar from './components/common/NavigationBar';
 import ContactPage from './components/ContactUsPage/ContactPage'; 
 import HomePage from './components/Home/HomePage';
 import ServicesPage from './components/ServicesPage/ServicesPage';
@@ -10,7 +10,8 @@ import Login from "./components/Login/Login";
 import RegisterForm from "./components/CreateProfile/CreateProfile";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Map from "./components/Map/Map";
-import MapWithCo from "./components/MapWithCo/MapWithCo"
+import MapWithCo from "./components/MapWithCo/MapWithCo";
+import AdminPanel from"./components/admincontrolpanel/AdminPanel";
 function App() {
   const [data, setData] = useState([]);
 
@@ -25,9 +26,10 @@ function App() {
     <Router>
       <div>
         <TopBar />
-        <NavigationBar />
+        <AppNavbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/AdminPanel" element={<AdminPanel />} />
           <Route path="/order" element={<Order />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/login" element={<Login />} />
@@ -37,6 +39,7 @@ function App() {
           <Route path="/map" element={<Map />} />
           <Route path="/mapwithco" element={<MapWithCo />} />
         </Routes>
+        
       </div>
     </Router>
   );
