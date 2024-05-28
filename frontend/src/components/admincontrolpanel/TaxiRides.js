@@ -42,6 +42,7 @@ function TaxiRides() {
             <h2>Driver Details</h2>
             <p><strong>createdAt:</strong> {historyDetails.createdAt}</p>
             <p><strong>Location:</strong> {historyDetails.pickupLocation}</p>
+            <p><strong>destination:</strong> {historyDetails.destination}</p>
             <p><strong>passengerCount:</strong> {historyDetails.passengerCount}</p>
             <p><strong>additionalPreferences:</strong> {historyDetails.additionalPreferences}</p>
           </div>
