@@ -1,0 +1,84 @@
+/* ContactPage.css */
+
+.yellow-box {
+  background-color: rgb(255, 193, 7);
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.yellow-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.yellow-box label {
+  margin-bottom: 5px;
+}
+
+.yellow-box input,
+.yellow-box textarea {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.yellow-box button {
+  padding: 10px 20px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.yellow-box button:hover {
+  background-color: darkblue;
+}
+
+
+.ContactPage {
+  position: relative;
+  background: transparent;
+  z-index: 2;
+  overflow: hidden; /* Ensures no overflow of the blurred background */
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  z-index: -1; 
+}
+
+
+.ContactPage .display-3 {
+  font-size: 4.5rem;
+  line-height: 1.2;
+}
+
+.ContactPage .lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2; 
+}

@@ -1,0 +1,7 @@
+{
+    "git.ignoreLimitWarning": true,
+    "liveshare.allowGuestDebugControl": true,
+    "liveshare.allowGuestTaskControl": true,
+    "liveshare.alwaysFollowHost": true,
+    "liveshare.languages.allowGuestCommandControl": true
+}
