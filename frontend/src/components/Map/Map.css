@@ -1,0 +1,32 @@
+/* Map.css */
+/* Reset box-sizing, margin, and padding for all elements within the map container */
+.map-container * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Map container styling */
+.map-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Leaflet map container styling */
+.leaflet-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Cluster icon styling */
+.cluster-icon {
+  background-color: #333;
+  height: 2em;
+  width: 2em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0px 5px #fff;
+}
