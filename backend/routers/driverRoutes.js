@@ -68,6 +68,14 @@ router.delete('/:id', async (req, res) => {
     });
   }
 });
+router.get('/d', async (req, res) => {
+  try {
+    const drivers = await Driver.find();
+    res.status(200).json(drivers);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to get drivers', error: error.message });
+  }
+});
 
 router.put('/:id', async (req, res) => {
   try {

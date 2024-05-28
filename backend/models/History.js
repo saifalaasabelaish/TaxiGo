@@ -8,17 +8,19 @@ const HistorySchema = new mongoose.Schema(
             type: Date, default: Date.now
 
         },
-        driver:
+        destination:
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Driver'
+            type: String 
         },
-        user:
+        pickupLocation:
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            type: String
         },
-        location:
+        passengerCount:
+        {
+            type: String
+        },
+        additionalPreferences:
         {
             type: String
         }
