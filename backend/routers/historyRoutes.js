@@ -2,8 +2,6 @@ import express from 'express';
 import History from '../models/History.js';
 
 const router = express.Router();
-
-// Route to create a new history entry
 router.post('/', async (req, res) => {
   try {
     const { destination, pickupLocation,passengerCount,additionalPreferences } = req.body;
@@ -23,7 +21,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Route to get all history entries
 router.get('/', async (req, res) => {
   try {
     const historyEntries = await History.find();

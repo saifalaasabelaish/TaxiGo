@@ -1,50 +1,49 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import "./Drivers.css";
 
 function TaxiRides() {
-  const [drivers, setDrivers] = useState([]);
-  const [driverDetails, setDriverDetails] = useState(null);
+  const [history, setHistories] = useState([]);
+  const [historyDetails, setHistoryDetails] = useState(null);
 
   useEffect(() => {
-    fetchDrivers();
+    fetchHistories();
   }, []);
 
-  const fetchDrivers = async () => {
+  const fetchHistories = async () => {
     try {
       const response = await fetch('http://localhost:5001/history');
       if (!response.ok) {
         throw new Error('Failed to fetch drivers');
       }
       const data = await response.json();
-      setDrivers(data);
+      setHistories(data);
     } catch (error) {
-      console.error('Error fetching drivers:', error);
+      console.error('Error fetching histories:', error);
     }
   };
 
-  const showDriverDetails = (driver) => {
-    setDriverDetails(driver);
+  const showHistoryDetails = (history) => {
+    setHistoryDetails(history);
   };
 
   return (
     <div className="containerH">
       <div className="sidebarH">
         <h2>Order History</h2>
-        {drivers.map((driver) => (
-          <div key={driver._id} onClick={() => showDriverDetails(driver)} className="driver-item">
-            <p>pickup Location: {driver.pickupLocation}</p>
+        {history.map((history) => (
+          <div key={history._id} onClick={() => showHistoryDetails(history)} className="driver-item">
+            <p>pickup Location: {history.pickupLocation}</p>
           </div>
         ))}
       </div>
       <div className="contentH">
-        {driverDetails ? (
+        {historyDetails ? (
           <div className="driver-details">
             <h2>Driver Details</h2>
-            <p><strong>createdAt:</strong> {driverDetails.createdAt}</p>
-            <p><strong>Location:</strong> {driverDetails.pickupLocation}</p>
-            <p><strong>passengerCount:</strong> {driverDetails.passengerCount}</p>
-            <p><strong>additionalPreferences:</strong> {driverDetails.additionalPreferences}</p>
+            <p><strong>createdAt:</strong> {historyDetails.createdAt}</p>
+            <p><strong>Location:</strong> {historyDetails.pickupLocation}</p>
+            <p><strong>passengerCount:</strong> {historyDetails.passengerCount}</p>
+            <p><strong>additionalPreferences:</strong> {historyDetails.additionalPreferences}</p>
           </div>
         ) : (
           <p>Select a driver to see details</p>

@@ -37,16 +37,15 @@ function TaxiFareRequestForm() {
         body: JSON.stringify(formData),
       });
   
-      const responseBody = await response.text(); // Read the response body as text
+      const responseBody = await response.text();
   
       if (!response.ok) {
         console.error('Server returned an error:', response.status, responseBody);
         throw new Error(`Server error: ${response.status}`);
       }
   
-      const data = JSON.parse(responseBody); // Parse the response body as JSON
+      const data = JSON.parse(responseBody);
       console.log('Taxi fare requested:', data);
-      // Optionally, you can reset the form or update the state here
     } catch (error) {
       console.error('Error requesting taxi fare:', error);
     }
