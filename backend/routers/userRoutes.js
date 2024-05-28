@@ -1,5 +1,6 @@
 import express from 'express';
 import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
@@ -37,17 +38,25 @@ router.get('/email', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await User.findOne({ email });
-    if (user && user.password === password) 
-      res.json({ success: true, message: 'Login successful' });
-    else {
-      res.json({ success: false, message: 'Invalid email or password' });
+  try{
+
+    const {email, password} = req.body
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+    res.status(200).json({ message: 'Login successful' });
+
   } catch (error) {
-    res.status(500).json({ message: 'Failed to login', error: error.message });
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
+
 });
 
 router.delete('/:id', async (req, res) => {

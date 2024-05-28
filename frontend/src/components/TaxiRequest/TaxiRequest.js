@@ -47,6 +47,7 @@ function TaxiFareRequestForm() {
           <label>
             Pickup Location:
             <input
+              name="pickup"
               type="text"
               value={pickupLocation}
               onChange={(e) => setPickupLocation(e.target.value)}
@@ -57,6 +58,7 @@ function TaxiFareRequestForm() {
         <label>
           Destination:
           <input
+            name="destination"
             type="text"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
@@ -66,6 +68,7 @@ function TaxiFareRequestForm() {
         <label>
           Passenger Count:
           <input
+            name="passengercount"
             type="number"
             value={passengerCount}
             onChange={(e) => setPassengerCount(parseInt(e.target.value))}
@@ -76,6 +79,7 @@ function TaxiFareRequestForm() {
         <label>
           Additional Preferences:
           <textarea
+            name="preferences"
             value={additionalPreferences}
             onChange={(e) => setAdditionalPreferences(e.target.value)}
           />

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import { BsCarFrontFill, BsPeopleFill, BsTruck } from "react-icons/bs";
 import {
   Bar,
@@ -14,45 +15,31 @@ import {
 } from "recharts";
 
 function Dashboard() {
-  const data = [
-    {
-      name: "Mon",
-      deliveries: 400,
-      taxiRides: 240,
-      drivers: 10,
-      customers: 20,
-    },
-    {
-      name: "Tue",
-      deliveries: 300,
-      taxiRides: 139,
-      drivers: 12,
-      customers: 25,
-    },
-    { name: "Wed", deliveries: 200, taxiRides: 980, drivers: 8, customers: 22 },
-    {
-      name: "Thu",
-      deliveries: 278,
-      taxiRides: 390,
-      drivers: 11,
-      customers: 18,
-    },
-    { name: "Fri", deliveries: 189, taxiRides: 480, drivers: 9, customers: 30 },
-    {
-      name: "Sat",
-      deliveries: 239,
-      taxiRides: 380,
-      drivers: 10,
-      customers: 28,
-    },
-    {
-      name: "Sun",
-      deliveries: 349,
-      taxiRides: 430,
-      drivers: 12,
-      customers: 35,
-    },
-  ];
+  const [counts, setCounts] = useState({
+    deliveries: 0,
+    taxiRides: 0,
+    drivers: 0,
+    customers: 0,
+  });
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/Order/counts');
+
+        setCounts({
+          deliveries: response.data.orders, 
+          taxiRides: response.data.orders, 
+          drivers: 0, 
+          customers: 0, 
+        });
+      } catch (error) {
+        console.error('Error fetching counts:', error);
+      }
+    };
+
+    fetchCounts();
+  }, []);
 
   return (
     <main className="main-container">
@@ -66,28 +53,28 @@ function Dashboard() {
             <h3>Deliveries</h3>
             <BsTruck className="card_icon" />
           </div>
-          <h1>300</h1>
+          <h1>{counts.deliveries}</h1>
         </div>
         <div className="card card-taxi-rides">
           <div className="card-inner">
             <h3>Taxi Rides</h3>
             <BsCarFrontFill className="card_icon" />
           </div>
-          <h1>12</h1>
+          <h1>{counts.taxiRides}</h1>
         </div>
         <div className="card card-drivers">
           <div className="card-inner">
             <h3>Drivers</h3>
             <BsPeopleFill className="card_icon" />
           </div>
-          <h1>12</h1>
+          <h1>{counts.drivers}</h1>
         </div>
         <div className="card card-customers">
           <div className="card-inner">
             <h3>Customers</h3>
             <BsPeopleFill className="card_icon" />
           </div>
-          <h1>33</h1>
+          <h1>{counts.customers}</h1>
         </div>
       </div>
 
