@@ -54,7 +54,11 @@ function RegisterForm() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevState) => {
+<<<<<<< HEAD
       const updatedFormData = {
+=======
+      const newFormData = {
+>>>>>>> 64b136b5b30058e2ea42243454b8786a95e3ee5f
         firstName: prevState.firstName,
         lastName: prevState.lastName,
         email: prevState.email,
@@ -65,7 +69,11 @@ function RegisterForm() {
         location: prevState.location,
       };
 
+<<<<<<< HEAD
       newFormData[name] = value;
+=======
+       newFormData[name] = value;
+>>>>>>> 64b136b5b30058e2ea42243454b8786a95e3ee5f
 
       return newFormData;
     });

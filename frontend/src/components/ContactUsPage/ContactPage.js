@@ -21,16 +21,16 @@ function ContactPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
-            const response = await fetch('http://localhost:5001/user', {
+            const response = await fetch('http://localhost:5001/contact', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
-    
+
             if (response.ok) {
                 const result = await response.json();
                 console.log('Form submitted successfully:', result);
