@@ -1,0 +1,51 @@
+.containerH {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebarH {
+  width: 300px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  overflow-y: auto;
+}
+
+.sidebarH h2 {
+  margin-top: 0;
+}
+
+.driver-item {
+  background-color: #34495e;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.driver-item:hover {
+  background-color: #1abc9c;
+}
+
+.contentH {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.driver-details {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.driver-details h2 {
+  margin-top: 0;
+}

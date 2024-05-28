@@ -11,7 +11,6 @@ function TaxiFareRequestForm() {
   const handleGPSChange = (event) => {
     setUseGPS(event.target.checked);
     if (event.target.checked) {
-    
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setPickupLocation(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`);
@@ -24,12 +23,34 @@ function TaxiFareRequestForm() {
       setPickupLocation('');
     }
   };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log('Form submitted:', { pickupLocation, destination, passengerCount, additionalPreferences });
-    
+    const formData = { pickupLocation, destination, passengerCount, additionalPreferences };
+  
+    try {
+      const response = await fetch('http://localhost:5001/history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const responseBody = await response.text();
+  
+      if (!response.ok) {
+        console.error('Server returned an error:', response.status, responseBody);
+        throw new Error(`Server error: ${response.status}`);
+      }
+  
+      const data = JSON.parse(responseBody);
+      console.log('Taxi fare requested:', data);
+    } catch (error) {
+      console.error('Error requesting taxi fare:', error);
+    }
   };
+  
 
   return (
     <div className="form-container">
