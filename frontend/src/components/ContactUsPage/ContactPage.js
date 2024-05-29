@@ -21,7 +21,6 @@ function ContactPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-<<<<<<< HEAD
 
         try {
             const response = await fetch('http://localhost:5001/contact', { 
@@ -48,9 +47,6 @@ function ContactPage() {
         } catch (error) {
             console.error('Error submitting the form:', error);
         }
-=======
-        console.log(formData);
->>>>>>> miqdad
     };
 
     return (

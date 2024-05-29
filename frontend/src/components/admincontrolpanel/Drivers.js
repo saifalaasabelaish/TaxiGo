@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-
-function Drivers() {
-  return <div className="main-container">Drivers</div>;
-}
-=======
 import React, { useState, useEffect } from 'react';
 import "./Drivers.css";
 
@@ -64,5 +57,4 @@ function Drivers() {
   );
 }
 
->>>>>>> miqdad
 export default Drivers;

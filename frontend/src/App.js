@@ -12,11 +12,8 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Map from "./components/Map/Map";
 import MapWithCo from "./components/MapWithCo/MapWithCo";
 import AdminPanel from"./components/admincontrolpanel/AdminPanel";
-<<<<<<< HEAD
-=======
 import Drivers from './components/admincontrolpanel/Drivers';
 import TaxiRides from './components/admincontrolpanel/TaxiRides';
->>>>>>> miqdad
 function App() {
   const [data, setData] = useState([]);
 
@@ -45,13 +42,10 @@ function App() {
           <Route path="/mapwithco" element={<MapWithCo />} />
         </Routes>
         
-<<<<<<< HEAD
-=======
         <Routes>
           <Route path="/adminpanel/drivers" element={<Drivers />} />
           <Route path="/adminpanel/taxi-rides" element={<TaxiRides />} />
         </Routes>
->>>>>>> miqdad
       </div>
     </Router>
   );

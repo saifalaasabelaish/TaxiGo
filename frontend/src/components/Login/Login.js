@@ -27,10 +27,7 @@ const Login = () => {
         acces=1;
         navigate('/', { state: { acces } });
         
-<<<<<<< HEAD
-=======
         
->>>>>>> miqdad
       } else {
         setError('Invalid email or password');
       }
@@ -38,11 +35,7 @@ const Login = () => {
       if (responsE.data.success) {
         console.log('Login successful');
         acces=2;  
-<<<<<<< HEAD
-      navigate('/', { state: { acces } });
-=======
       navigate('/', { state: { acces} });
->>>>>>> miqdad
       } else {
         setError('Invalid email or password');
       }

@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-
-function TaxiRides() {
-  return <div className="main-container">TaxiRides</div>;
-}
-=======
 import React, { useState, useEffect } from 'react';
 import "./Drivers.css";
 
@@ -61,5 +54,4 @@ function TaxiRides() {
   );
 }
 
->>>>>>> miqdad
 export default TaxiRides;
