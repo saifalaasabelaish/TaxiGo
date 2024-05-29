@@ -7,7 +7,15 @@ import driverRoutes from './routers/driverRoutes.js';
 import historyRoutes from './routers/historyRoutes.js';
 import taxiStandRoutes from './routers/taxiStandRoutes.js';
 import userRoutes from './routers/userRoutes.js';
+<<<<<<< HEAD
 import ContactRoutes from './routers/ContactRoutes.js';
+=======
+import coordinatesRouter from './routers/CoordinatesRoutes.js'; // Import the coordinates router
+import http from 'http';
+import { Server } from 'socket.io';
+import cron from 'node-cron';
+import Coordinates from './models/Coordinates.js'; // Adjust the path as necessary
+>>>>>>> yahya
 
 const app = express();
 
@@ -25,13 +33,18 @@ app.use('/Driver', driverRoutes);
 app.use('/History', historyRoutes);
 app.use('/TaxiStand', taxiStandRoutes);
 app.use('/User', userRoutes);
+<<<<<<< HEAD
 app.use('/Contact', ContactRoutes);
+=======
+app.use('/Coordinates', coordinatesRouter); // Use the coordinates router
+>>>>>>> yahya
 
 // Root route
 app.get('/', (req, res) => {
   return res.status(200).send('Welcome To TaxiGo');
 });
 
+<<<<<<< HEAD
 // Start the server with error handling
 const startServer = (port) => {
   app.listen(port, () => {
@@ -47,3 +60,49 @@ const startServer = (port) => {
 };
 
 startServer(PORT);
+=======
+// Initialize HTTP server
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
+});
+
+// Socket.io connection handling
+io.on('connection', (socket) => {
+  console.log('A user connected');
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+});
+
+// Function to fetch and send coordinates
+const sendCoordinates = async () => {
+  try {
+    const coordinates = await Coordinates.find().sort({ timestamp: 1 });
+    let index = 0;
+
+    const interval = setInterval(() => {
+      if (index < coordinates.length) {
+        io.emit('coordinates', coordinates[index]);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 3000);
+  } catch (error) {
+    console.error('Failed to retrieve coordinates:', error);
+  }
+};
+
+// Start sending coordinates when a client connects
+io.on('connection', () => {
+  sendCoordinates();
+});
+
+// Start the server
+server.listen(PORT, () => {
+  console.log(`App is listening on port: ${PORT}`);
+});
+>>>>>>> yahya

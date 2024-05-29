@@ -18,7 +18,14 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mongodb": "^6.6.0",
+<<<<<<< HEAD
     "mongoose": "^8.4.0"
+=======
+    "mongoose": "^8.3.3",
+    "node-cron": "^3.0.3",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
+>>>>>>> yahya
   },
   "devDependencies": {
     "chai": "^5.1.1",
