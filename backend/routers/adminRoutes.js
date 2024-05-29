@@ -1,5 +1,6 @@
 import express from 'express';
 import Admin from '../models/Admin.js';
+import bcrypt from 'bcrypt';
 
 const router = express.Router();
 
@@ -39,10 +40,15 @@ router.get('/email', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
-    const admin = await Admin.findOne({ email });
-    if (admin && admin.password === password) 
-      res.json({ success: true, message: 'Login successful' });
-     else {
+    const user = await User.findOne({ email });
+    if (user) {
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (validPassword) {
+        res.json({ success: true, message: 'Login successful' });
+      } else {
+        res.json({ success: false, message: 'Invalid email or password' });
+      }
+    } else {
       res.json({ success: false, message: 'Invalid email or password' });
     }
   } catch (error) {

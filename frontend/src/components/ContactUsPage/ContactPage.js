@@ -23,7 +23,7 @@ function ContactPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5001/contact', { // Change endpoint to /contact
+            const response = await fetch('http://localhost:5001/contact', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
