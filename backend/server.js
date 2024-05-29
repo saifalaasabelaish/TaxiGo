@@ -7,7 +7,7 @@ import driverRoutes from './routers/driverRoutes.js';
 import historyRoutes from './routers/historyRoutes.js';
 import taxiStandRoutes from './routers/taxiStandRoutes.js';
 import userRoutes from './routers/userRoutes.js';
-import ContactRoutes from './routers/ContactRoutes.js';
+import contactRoutes from './routers/contactRoutes.js'; // Correct import path
 
 import coordinatesRouter, { sendCoordinates } from './routers/CoordinatesRoutes.js'; 
 import http from 'http';
@@ -31,8 +31,7 @@ app.use('/History', historyRoutes);
 app.use('/TaxiStand', taxiStandRoutes);
 app.use('/User', userRoutes);
 app.use('/Coordinates', coordinatesRouter); 
-app.use('/Contact', ContactRoutes);
-
+app.use('/contacts', contactRoutes); // Use lowercase 'contacts' for consistency
 
 app.get('/', (req, res) => {
   console.log(req);
