@@ -18,6 +18,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 import RatingDrive from "./components/Rating/RatingDrive"
 import Dashboard from "./components/admincontrolpanel/Dashboard"
 import Reports from './components/admincontrolpanel/Reports';
+import Customers from "./components/admincontrolpanel/Customers"
 function App() {
   const [data, setData] = useState([]);
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/adminpanel/taxi-rides" element={<TaxiRides />} />
           <Route path="/adminpanel/dashboard" element={<Dashboard />} />
           <Route path="/adminpanel/reports" element={<Reports />} />
+          <Route path="/adminpanel/customers" element={<Customers />} />
 
 
         </Routes>

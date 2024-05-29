@@ -55,11 +55,6 @@ function AdminSidebar({ openSidebarToggle, openSidebar }) {
             <BsFileTextFill className="icon" /> Reports
           </Link>
         </li>
-        <li className="sidebar-list-item">
-          <Link to="/adminpanel/settings">
-            <BsGearFill className="icon" /> Settings
-          </Link>
-        </li>
       </ul>
     </aside>
   );
