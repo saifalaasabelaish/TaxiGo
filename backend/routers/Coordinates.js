@@ -1,29 +1,35 @@
-// // server.js
-// const express = require('express');
-// const app = express();
-// const port = process.env.PORT || 3000;
+import express from 'express';
+import mongoose from 'mongoose';
+import Coordinates from '../models/Coordinates.js';  // Adjust the path as necessary
+const router = express.Router();
 
-// const initialTime = new Date('2024-05-19T20:40:00Z').getTime();
-// const positions = [
-//   { latitude: 32.22388827607175, longitude: 35.25495656949715, timestamp: new Date(initialTime + 0 * 5000).toISOString() },
-//   { latitude: 32.22366038185282, longitude: 35.255406061662825, timestamp: new Date(initialTime + 1 * 5000).toISOString() },
-//   { latitude: 32.22344160286514, longitude: 35.25579397957371, timestamp: new Date(initialTime + 2 * 5000).toISOString() },
-//   { latitude: 32.22319677813792, longitude: 35.25621268460398, timestamp: new Date(initialTime + 3 * 5000).toISOString() },
-//   { latitude: 32.22287642137864, longitude: 35.256891540922155, timestamp: new Date(initialTime + 4 * 5000).toISOString() },
-//   { latitude: 32.22254043625088, longitude: 35.25742261900714, timestamp: new Date(initialTime + 5 * 5000).toISOString() },
-//   { latitude: 32.22170046799454, longitude: 35.259060494586905, timestamp: new Date(initialTime + 6 * 5000).toISOString() },
-//   { latitude: 32.22143349971231, longitude: 35.259548470674495, timestamp: new Date(initialTime + 7 * 5000).toISOString() },
-//   { latitude: 32.22131108472888, longitude: 35.25981785808964, timestamp: new Date(initialTime + 8 * 5000).toISOString() }
-// ];
-// const cors = require('cors');
-// app.use(cors());
+router.get('/:timestamp', async (req, res) => {
+    try {
+        const { timestamp } = req.params;
+        console.log('Received request with timestamp:', timestamp);
 
-// app.use(express.json());
+        const queryTimestamp = new Date(timestamp);
+        if (isNaN(queryTimestamp.getTime())) {
+            return res.status(400).json({ error: 'Invalid timestamp format' });
+        }
 
-// app.get('/positions', (req, res) => {
-//   res.json(positions);
-// });
+        console.log('Querying for timestamp:', queryTimestamp);
 
-// app.listen(port, () => {
-//   console.log(`Server running on port ${port}`);
-// });
+        // Find the first document that matches the timestamp
+        const coordinate = await Coordinates.findOne({ timestamp: queryTimestamp });
+
+        console.log('Found coordinate:', coordinate);
+
+        if (!coordinate) {
+            return res.status(404).json({ error: 'Coordinate not found' });
+        }
+
+        res.status(200).json(coordinate);
+    } catch (error) {
+        console.error('Failed to retrieve coordinate:', error);
+        res.status(500).send('Error retrieving coordinate from the database.');
+    }
+});
+
+export default router;
+//coordinatesroutes.js

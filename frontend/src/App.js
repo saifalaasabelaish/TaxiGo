@@ -8,12 +8,14 @@ import ServicesPage from './components/ServicesPage/ServicesPage';
 import Order from "./components/TaxiRequest/TaxiRequest";
 import Login from "./components/Login/Login";
 import RegisterForm from "./components/CreateProfile/CreateProfile";
-import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Map from "./components/Map/Map";
 import MapWithCo from "./components/MapWithCo/MapWithCo";
 import AdminPanel from"./components/admincontrolpanel/AdminPanel";
 import Drivers from './components/admincontrolpanel/Drivers';
 import TaxiRides from './components/admincontrolpanel/TaxiRides';
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
+import RatingDrive from "./components/Rating/RatingDrive"
 function App() {
   const [data, setData] = useState([]);
 
@@ -37,9 +39,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/create-profile" element={<RegisterForm />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} /> 
           <Route path="/contact" element={<ContactPage />} /> 
           <Route path="/map" element={<Map />} />
           <Route path="/mapwithco" element={<MapWithCo />} />
+          <Route path="/rating" element={<RatingDrive />} />
         </Routes>
         
         <Routes>
