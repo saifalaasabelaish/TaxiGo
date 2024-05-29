@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TaxiFareRequestForm.css'; 
 
 function TaxiFareRequestForm() {
@@ -7,6 +8,7 @@ function TaxiFareRequestForm() {
   const [destination, setDestination] = useState('');
   const [passengerCount, setPassengerCount] = useState(1);
   const [additionalPreferences, setAdditionalPreferences] = useState('');
+  const navigate = useNavigate();
 
   const handleGPSChange = (event) => {
     setUseGPS(event.target.checked);
@@ -23,40 +25,19 @@ function TaxiFareRequestForm() {
       setPickupLocation('');
     }
   };
-  const handleSubmit = async (event) => {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Form submitted:', { pickupLocation, destination, passengerCount, additionalPreferences });
-    const formData = { pickupLocation, destination, passengerCount, additionalPreferences };
-  
-    try {
-      const response = await fetch('http://localhost:5001/history', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      const responseBody = await response.text();
-  
-      if (!response.ok) {
-        console.error('Server returned an error:', response.status, responseBody);
-        throw new Error(`Server error: ${response.status}`);
-      }
-  
-      const data = JSON.parse(responseBody);
-      console.log('Taxi fare requested:', data);
-    } catch (error) {
-      console.error('Error requesting taxi fare:', error);
-    }
+    console.log('Redirecting to /mapwithco');
+    navigate('/mapwithco');
   };
-  
 
   return (
     <div className="form-container">
       <h2>Request Taxi Fare</h2>
       <form onSubmit={handleSubmit} className="taxi-fare-form">
-        <label>  
+        <label>
           Use GPS to determine pickup location
           <input
             type="checkbox"

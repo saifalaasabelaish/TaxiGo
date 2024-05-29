@@ -35,7 +35,7 @@ const Login = () => {
       if (responsE.data.success) {
         console.log('Login successful');
         acces=2;  
-      navigate('/', { state: { acces } });
+      navigate('/', { state: { acces} });
       } else {
         setError('Invalid email or password');
       }
