@@ -7,15 +7,11 @@ import driverRoutes from './routers/driverRoutes.js';
 import historyRoutes from './routers/historyRoutes.js';
 import taxiStandRoutes from './routers/taxiStandRoutes.js';
 import userRoutes from './routers/userRoutes.js';
-<<<<<<< HEAD
-import ContactRoutes from './routers/ContactRoutes.js';
-=======
 import coordinatesRouter from './routers/CoordinatesRoutes.js'; // Import the coordinates router
 import http from 'http';
 import { Server } from 'socket.io';
 import cron from 'node-cron';
 import Coordinates from './models/Coordinates.js'; // Adjust the path as necessary
->>>>>>> yahya
 
 const app = express();
 
@@ -33,34 +29,13 @@ app.use('/Driver', driverRoutes);
 app.use('/History', historyRoutes);
 app.use('/TaxiStand', taxiStandRoutes);
 app.use('/User', userRoutes);
-<<<<<<< HEAD
-app.use('/Contact', ContactRoutes);
-=======
 app.use('/Coordinates', coordinatesRouter); // Use the coordinates router
->>>>>>> yahya
 
 // Root route
 app.get('/', (req, res) => {
   return res.status(200).send('Welcome To TaxiGo');
 });
 
-<<<<<<< HEAD
-// Start the server with error handling
-const startServer = (port) => {
-  app.listen(port, () => {
-    console.log(`App is listening on port: ${port}`);
-  }).on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.error(`Port ${port} is already in use. Trying port ${port + 1}...`);
-      startServer(port + 1);
-    } else {
-      throw err;
-    }
-  });
-};
-
-startServer(PORT);
-=======
 // Initialize HTTP server
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -105,4 +80,3 @@ io.on('connection', () => {
 server.listen(PORT, () => {
   console.log(`App is listening on port: ${PORT}`);
 });
->>>>>>> yahya
