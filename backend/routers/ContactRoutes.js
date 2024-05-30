@@ -1,9 +1,7 @@
-// routers/contactRoutes.js
 import express from 'express';
 const router = express.Router();
 import Contact from '../models/Contact.js';
 
-// Save data to db
 router.post('/', async (req, res) => {
     const { name, title, message, phoneNumber, emailAddress } = req.body;
     
@@ -23,7 +21,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Fetch all contacts
 router.get('/', async (req, res) => {
     try {
         const contacts = await Contact.find();

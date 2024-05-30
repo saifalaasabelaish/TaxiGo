@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import backgroundImage from "../../assets/home_pic.png";
 import Rating from 'react-rating-stars-component';
+import { useNavigate } from 'react-router-dom';
 
 const RatingDrive = () => {
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
-
+  const navigate = useNavigate();
   const handleReviewChange = (event) => {
     setReview(event.target.value);
   };
@@ -17,7 +18,7 @@ const RatingDrive = () => {
 
   const submitReview = async (event) => {
     event.preventDefault();
-
+        navigate('/');
     const reviewData = {
       rating,
       review,
