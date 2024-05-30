@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TaxiFareRequestForm.css'; 
 
 function TaxiFareRequestForm() {
@@ -7,11 +8,11 @@ function TaxiFareRequestForm() {
   const [destination, setDestination] = useState('');
   const [passengerCount, setPassengerCount] = useState(1);
   const [additionalPreferences, setAdditionalPreferences] = useState('');
+  const navigate = useNavigate();
 
   const handleGPSChange = (event) => {
     setUseGPS(event.target.checked);
     if (event.target.checked) {
-    
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setPickupLocation(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`);
@@ -28,14 +29,15 @@ function TaxiFareRequestForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Form submitted:', { pickupLocation, destination, passengerCount, additionalPreferences });
-    
+    console.log('Redirecting to /mapwithco');
+    navigate('/mapwithco');
   };
 
   return (
     <div className="form-container">
       <h2>Request Taxi Fare</h2>
       <form onSubmit={handleSubmit} className="taxi-fare-form">
-        <label>  
+        <label>
           Use GPS to determine pickup location
           <input
             type="checkbox"

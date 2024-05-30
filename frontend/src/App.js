@@ -11,6 +11,8 @@ import RegisterForm from "./components/CreateProfile/CreateProfile";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Map from "./components/Map/Map";
 import MapWithCo from "./components/MapWithCo/MapWithCo"
+import RatingDrive from "./components/Rating/RatingDrive"
+import Footer from "./components/common/Footer"
 function App() {
   const [data, setData] = useState([]);
 
@@ -36,7 +38,9 @@ function App() {
           <Route path="/contact" element={<ContactPage />} /> 
           <Route path="/map" element={<Map />} />
           <Route path="/mapwithco" element={<MapWithCo />} />
+          <Route path="/rating" element={<RatingDrive />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

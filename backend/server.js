@@ -7,11 +7,9 @@ import driverRoutes from './routers/driverRoutes.js';
 import historyRoutes from './routers/historyRoutes.js';
 import taxiStandRoutes from './routers/taxiStandRoutes.js';
 import userRoutes from './routers/userRoutes.js';
-import coordinatesRouter from './routers/CoordinatesRoutes.js'; // Import the coordinates router
+import coordinatesRouter, { sendCoordinates } from './routers/CoordinatesRoutes.js'; 
 import http from 'http';
 import { Server } from 'socket.io';
-import cron from 'node-cron';
-import Coordinates from './models/Coordinates.js'; // Adjust the path as necessary
 
 const app = express();
 
@@ -30,14 +28,13 @@ app.use('/Driver', driverRoutes);
 app.use('/History', historyRoutes);
 app.use('/TaxiStand', taxiStandRoutes);
 app.use('/User', userRoutes);
-app.use('/Coordinates', coordinatesRouter); // Use the coordinates router
+app.use('/Coordinates', coordinatesRouter); 
 
 app.get('/', (req, res) => {
   console.log(req);
   return res.status(200).send('Welcome To TaxiGo');
 });
 
-// Initialize HTTP server
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -45,7 +42,10 @@ const io = new Server(server, {
   },
 });
 
-// Socket.io connection handling
+// Attach socket.io to the app
+app.set('socketio', io);
+
+// Socket.io connection: 
 io.on('connection', (socket) => {
   console.log('A user connected');
   socket.on('disconnect', () => {
@@ -53,31 +53,9 @@ io.on('connection', (socket) => {
   });
 });
 
-// Function to fetch and send coordinates
-const sendCoordinates = async () => {
-  try {
-    const coordinates = await Coordinates.find().sort({ timestamp: 1 });
-    let index = 0;
+// Start sending coordinates when the server starts
+sendCoordinates(io);
 
-    const interval = setInterval(() => {
-      if (index < coordinates.length) {
-        io.emit('coordinates', coordinates[index]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 3000);
-  } catch (error) {
-    console.error('Failed to retrieve coordinates:', error);
-  }
-};
-
-// Start sending coordinates when a client connects
-io.on('connection', () => {
-  sendCoordinates();
-});
-
-// Start the server
 server.listen(PORT, () => {
   console.log(`App is listening on port: ${PORT}`);
 });
