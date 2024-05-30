@@ -7,9 +7,10 @@ import driverRoutes from './routers/driverRoutes.js';
 import historyRoutes from './routers/historyRoutes.js';
 import taxiStandRoutes from './routers/taxiStandRoutes.js';
 import userRoutes from './routers/userRoutes.js';
-import contactRoutes from './routers/contactRoutes.js'; 
-
+import contactRoutes from './routers/ContactRoutes.js';
 import coordinatesRouter, { sendCoordinates } from './routers/CoordinatesRoutes.js'; 
+import ratingRoutes from './routers/ratingRoutes.js';
+
 import http from 'http';
 import { Server } from 'socket.io';
 
@@ -32,6 +33,7 @@ app.use('/TaxiStand', taxiStandRoutes);
 app.use('/User', userRoutes);
 app.use('/Coordinates', coordinatesRouter); 
 app.use('/contacts', contactRoutes); 
+app.use('/rating', ratingRoutes);
 
 app.get('/', (req, res) => {
   console.log(req);

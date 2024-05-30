@@ -1,22 +1,48 @@
 import React, { useState } from 'react';
-import Rating from 'react-rating-stars-component'; 
+import backgroundImage from "../../assets/home_pic.png";
+import Rating from 'react-rating-stars-component';
 
 const RatingDrive = () => {
   const [review, setReview] = useState('');
-  const [rating, setRating] = useState(0); 
+  const [rating, setRating] = useState(0);
 
   const handleReviewChange = (event) => {
     setReview(event.target.value);
   };
 
   const ratingChanged = (newRating) => {
-    setRating(newRating); 
+    setRating(newRating);
     console.log(newRating);
   };
 
-  const submitReview = (event) => {
+  const submitReview = async (event) => {
     event.preventDefault();
-    alert(`Your Review submitted: ${review} with a rating of ${rating} stars. THANK YOU`);
+
+    const reviewData = {
+      rating,
+      review,
+    };
+
+    try {
+      const response = await fetch('http://localhost:5001/rating', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reviewData),
+      });
+
+      if (response.ok) {
+        alert(`Your review has been submitted: ${review} with a rating of ${rating} stars. THANK YOU`);
+        setReview('');
+        setRating(0);
+      } else {
+        const result = await response.json();
+        console.error('Failed to submit review:', result.message);
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+    }
   };
 
   return (
@@ -41,10 +67,10 @@ const RatingDrive = () => {
                 />
               </div>
               <form onSubmit={submitReview}>
-                <textarea 
-                  className="form-control" 
-                  id="userReview" 
-                  rows="4" 
+                <textarea
+                  className="form-control"
+                  id="userReview"
+                  rows="4"
                   value={review}
                   onChange={handleReviewChange}
                   placeholder="Write your review here"
@@ -57,6 +83,8 @@ const RatingDrive = () => {
             </div>
           </div>
         </div>
+        <div className="background-overlay"></div>
+        <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
       </div>
     </div>
   );

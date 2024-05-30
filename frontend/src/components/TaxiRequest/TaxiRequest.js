@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TaxiFareRequestForm.css'; 
+import backgroundImage from "../../assets/home_pic.png"
+
 
 function TaxiFareRequestForm() {
   const [useGPS, setUseGPS] = useState(false);
@@ -84,6 +86,8 @@ function TaxiFareRequestForm() {
         </label>
         <button type="submit">Request Taxi Fare</button>
       </form>
+      <div className="background-overlay"></div>
+      <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
     </div>
   );
 }

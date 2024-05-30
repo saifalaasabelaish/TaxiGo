@@ -38,13 +38,15 @@ function LocationMarker() {
 
 const Map = () => {
   return (
-    <MapContainer center={[32.22115149325139, 35.26074000763494]} zoom={13} scrollWheelZoom={false} className="leaflet-container">
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <LocationMarker />
-    </MapContainer>
+    <div className="map-container">
+      <MapContainer center={[32.22115149325139, 35.26074000763494]} zoom={13} scrollWheelZoom={false} className="leaflet-container">
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <LocationMarker />
+      </MapContainer>
+    </div>
   );
 }
 

@@ -17,7 +17,7 @@ const sendCoordinates = async (io) => {
         clearInterval(interval);
         io.emit('endOfCoordinates');
       }
-    }, 10);
+    }, 100);
   } catch (error) {
     console.error('Failed to retrieve coordinates:', error);
   }

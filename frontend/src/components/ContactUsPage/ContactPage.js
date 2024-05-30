@@ -1,3 +1,4 @@
+// ContactPage.js
 import './ContactPage.css';
 import backgroundImage from '../../assets/home_pic.png';
 import React, { useState } from 'react';
@@ -23,7 +24,7 @@ function ContactPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5001/contact', { 
+            const response = await fetch('http://localhost:5001/contacts', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
